@@ -7,7 +7,7 @@ const PeopleTable = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPeople = async () => {
+    (async function () {
       try {
         const response = await axios.get("https://swapi.dev/api/people");
         setPeople(response.data.results);
@@ -16,9 +16,7 @@ const PeopleTable = () => {
         setError(error);
         setLoading(false);
       }
-    };
-
-    fetchPeople();
+    })();
   }, []);
 
   if (loading) return <p>Loading...</p>;
